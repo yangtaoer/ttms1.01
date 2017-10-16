@@ -48,5 +48,7 @@ public interface ProjectDao {
 	 */
 	int validById(@Param("valid")Integer valid,
 			      @Param("ids")String[] ids);
-
+	
+	
+	int insertObject(Project entity);
 }

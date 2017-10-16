@@ -1,5 +1,6 @@
 package productService;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -60,7 +61,24 @@ public class TestProjectService {
         	projectService.validById(valid, ids);        	
         }
         
-        
+        @Test
+        public void testSaveObject(){
+        	ProjectService ps = ctx.getBean("projectServiceImpl",ProjectService.class);
+        	Project p = new Project();
+        	p.setId(5);
+        	p.setCode("rrrrr");
+        	p.setBeginDate(new Date(System.currentTimeMillis()));
+        	p.setCreatedTime(new Date(System.currentTimeMillis()));
+        	p.setCreatedUser("user");
+        	p.setEndDate(new Date(System.currentTimeMillis()));
+        	p.setModifiedTime(new Date(System.currentTimeMillis()));
+        	p.setName("火星游");
+        	p.setNote("tt-20170901-CN");
+        	p.setValid(1);
+        	p.setModifiedUser("you");
+        	ps.saveObject(p);
+        	
+        }
         
         
         @After

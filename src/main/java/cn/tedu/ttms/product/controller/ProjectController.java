@@ -25,11 +25,18 @@ public class ProjectController {
 	
 	@Autowired
 	@Qualifier("projectServiceImpl")
-	private ProjectService projectService;
+   private ProjectService projectService;
 	/**返回项目列表页面*/
    @RequestMapping("listUI.do")
    public String listUI(){
 	   return "product/project_list";//WEB-INF中的页面jsp
+   }
+   
+   
+   /**返回编辑页面*/
+   @RequestMapping("editUI.do")
+   public String editUI(){
+	   return "product/project_edit";//WEB-INF中的页面jsp
    }
    
   /* @ExceptionHandler(ServiceException.class)
@@ -61,26 +68,26 @@ public class ProjectController {
 		   String ids){
 	   projectService.validById(valid, ids);
 	   return new JsonResult();
-	   
-	   
+	    
    }
    
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
+   /**
+    * 
+    * @param entity 保存的Project对象
+    * @return 处理结果封装的JsonResult对象
+    * 页面获取数据
+    * name = "火星游" code="sss"...
+    * spring 获取参数数据以后会对数据进行解析然后调用project对象的serXXX方法将数据存储到project对象中
+    * 所以必须要名字相同
+    */
+   @RequestMapping("doSaveObject")
+   @ResponseBody
+   public JsonResult doSaveObject(Project entity) {
+	   projectService.saveObject(entity);
+	   return new JsonResult("添加成功!");
+   }
+     
    
    @RequestMapping("doGetPageObjects")
    @ResponseBody//将返回对象转换为json对象

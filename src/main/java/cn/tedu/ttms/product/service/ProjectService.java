@@ -31,4 +31,5 @@ public interface ProjectService {
       * @param ids 由多个id构成的字符串
       */
      void validById(Integer valid,String ids);
+     void saveObject(Project entity);
 }

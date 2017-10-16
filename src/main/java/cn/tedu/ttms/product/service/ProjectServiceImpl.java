@@ -63,4 +63,15 @@ public class ProjectServiceImpl implements ProjectService{
 		if(rows==0)throw new ServiceException("修改失败");
 	}
 
+	@Override
+	public void saveObject(Project entity) {
+		if(entity==null) {
+			throw new ServiceException("保存对象不能为空!");
+		}
+		int row = projectDao.insertObject(entity);
+		if(row<=0) {
+			throw new ServiceException("保存失败!");
+		}
+	}
+
 }

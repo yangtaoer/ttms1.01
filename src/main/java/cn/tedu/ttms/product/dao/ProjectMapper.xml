@@ -57,8 +57,12 @@
         </foreach>
         
         </update>
-            
-            
-            
+        <insert id="insertObject" parameterType="cn.tedu.ttms.project.Project">
+        	insert into tms_projects (code,name,beginDate,endDate,valid
+        	,note,createdUser,modifiedUser,createdTime,modifiedTime)
+        	values(#{code},#{name},#{beginDate},#{endDate},#{valid}
+        	,#{note},#{createdUser},#{modifiedUser},#{createdTime},#{modifiedTime})
+        </insert>    
+
             
 </mapper>

@@ -3,9 +3,23 @@ $(document).ready(function(){
 	$("#queryFormId")
 	.on("click",".btn-search",doQueryObjects)
 	.on("click",".btn-valid,.btn-invalid",doValidById)
-	
+	.on("click",".btn-add",doLoadEditPage)
 	doGetObjects();
 })
+
+
+function doLoadEditPage() {
+	var url="project/editUI.do";
+	//$(".context").load(url);  异步加载页面到节点
+	//模态框中异步加载显示编辑页面
+	//本项目中模态框的定义,在index.jsp中,默认隐藏
+	$("#modal-dialog .modal-body").load(url,function(){//回调函数
+		//bootstrap在jquery基础上写的,show表示显示,hide表示隐藏
+		$("#modal-dialog").modal("show");
+		$(".modal-title").html("添加&更新");
+	});
+}
+
 
 function doValidById(){
 	
@@ -15,7 +29,7 @@ function doValidById(){
 	
 	//1.1获得点击的button对象，根据点击的对象的不同设置不同的valid值            $(this)即点击的对象.
 	if($(this).hasClass("btn-valid")){
-		valid = 5;	
+		valid = 1;	
 	}
 	
 	if($(this).hasClass("btn-invalid")){
