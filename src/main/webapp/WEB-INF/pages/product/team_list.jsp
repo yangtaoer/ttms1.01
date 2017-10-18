@@ -20,15 +20,8 @@
 			 <div class="col-md-12">
 				<ul class="list-unstyled list-inline">
 					<li>
-					  <select id="searchPrjId" class="form-control"></select>
-					</li>
-					<li>
-					  <select id="searchValidId" class="form-control">
-							<option value="">选择状态</option>
-							<option value="1">启用</option>
-							<option value="0">禁用</option>
-					  </select>
-					</li>
+					  <input type="text" id="searchNameId" class="form-control"placeholder="输入团名称">
+					</li>					
 					<li class='O1'><button type="button" class="btn btn-primary btn-search" >查询</button></li>
 					<li class='O2'><button type="button" class="btn btn-primary btn-add">添加</button></li>
 					<li class='O3'><button type="button" class="btn btn-primary btn-invalid">禁用</button></li>
