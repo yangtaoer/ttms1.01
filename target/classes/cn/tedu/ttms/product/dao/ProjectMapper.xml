@@ -63,6 +63,14 @@
         	values(#{code},#{name},#{beginDate},#{endDate},#{valid}
         	,#{note},#{createdUser},#{modifiedUser},#{createdTime},#{modifiedTime})
         </insert>    
-
+		<update id="updateObject" parameterType="cn.tedu.ttms.project.Project">
+			update tms_projects set code=#{code},name=#{name},beginDate=#{beginDate},
+			endDate=#{endDate},valid=#{valid},note=#{note},
+			createdUser=#{createdUser},modifiedUser=#{modifiedUser},
+			createdTime=#{createdTime},modifiedTime=#{modifiedTime} where id = #{id}
+		</update>
+		<select id="findObjectById" parameterType="integer" resultType="cn.tedu.ttms.project.Project">
+		select * from tms_projects where id=#{id}
+		</select>
             
 </mapper>

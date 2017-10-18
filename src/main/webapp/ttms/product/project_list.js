@@ -3,7 +3,8 @@ $(document).ready(function(){
 	$("#queryFormId")
 	.on("click",".btn-search",doQueryObjects)
 	.on("click",".btn-valid,.btn-invalid",doValidById)
-	.on("click",".btn-add",doLoadEditPage)
+	.on("click",".btn-add",doLoadEditPage);
+	$("#tbodyId").on("click",".btn-default",doLoadEditPage);
 	doGetObjects();
 })
 
@@ -13,10 +14,20 @@ function doLoadEditPage() {
 	//$(".context").load(url);  异步加载页面到节点
 	//模态框中异步加载显示编辑页面
 	//本项目中模态框的定义,在index.jsp中,默认隐藏
+	var title;
+	if($(this).hasClass("btn-add")) {
+		title="添加项目";
+	}
+	if($(this).hasClass("btn-success")) {
+		var idValue = $(this).parent().parent().data("id");
+		$("#modal-dialog").data("idKey",idValue);
+		title = "修改项目----id="+idValue;
+		
+	}
 	$("#modal-dialog .modal-body").load(url,function(){//回调函数
 		//bootstrap在jquery基础上写的,show表示显示,hide表示隐藏
 		$("#modal-dialog").modal("show");
-		$(".modal-title").html("添加&更新");
+		$(".modal-title").html(title);
 	});
 }
 
@@ -52,8 +63,6 @@ function doValidById(){
 		
 		
 	});
-	console.log("valid="+valid);
-	console.log("ids="+ids);
 	if(ids==""){
 		alert("请至少选择一个！");
 		return;
@@ -79,10 +88,6 @@ function doValidById(){
 
 }
 
-
-
-
-
 function doQueryObjects(){
 	//1.初始化当前页面数据
 	$("#pageId").data("pageCurrent",1);
@@ -101,7 +106,7 @@ function doGetObjects(){
 	var params={"pageCurrent":pageCurrent};
 	params.name = $("#searchNameId").val();
 	params.valid = $("#searchValidId").val();
-	console.log(params);
+
 	//发起异步请求获取服务端数据
 	$.getJSON(url,params,function(result){//callback method
 		//console.log(result);//json对象
@@ -125,6 +130,7 @@ function setTableBodyRows(result){
 	for(var i in result){
 		//2.1构建一个tr对象
 		var tr = $("<tr></tr>");
+		tr.data("id",result[i].id);
 		//2.2构建每个tr的td对象（多个）
 		//2.3在td对象内容填充具体数据
 		var tds = "<td><input type='checkbox' name='checkId' value='"+result[i].id+"'></td>"+
@@ -133,7 +139,7 @@ function setTableBodyRows(result){
 		"<td>"+result[i].beginDate+"</td>"+
 		"<td>"+result[i].endDate+"</td>"+
 		"<td>"+(result[i].valid?"有效":"无效")+"</td>"+
-		"<td><button type='button' class='btn btn-success'>修改</button></td>";
+		"<td><button type='button' class='btn btn-default btn-success'>修改</button></td>";
 		//2.4将td添加到tr对象中
 		tr.append(tds);
 		//2.5将tr追加到tbody中

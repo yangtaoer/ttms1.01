@@ -51,4 +51,8 @@ public interface ProjectDao {
 	
 	
 	int insertObject(Project entity);
+	
+	int updateObject(Project entity);
+	
+	Project findObjectById(Integer id);
 }

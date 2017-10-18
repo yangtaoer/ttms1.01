@@ -32,4 +32,6 @@ public interface ProjectService {
       */
      void validById(Integer valid,String ids);
      void saveObject(Project entity);
+     void updateById(Project project);
+     Project findObjectById(Integer id);
 }

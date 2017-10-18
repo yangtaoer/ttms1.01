@@ -80,6 +80,25 @@ public class TestProjectService {
         	
         }
         
+        @Test
+        public void testUpdateObject(){
+        	ProjectService ps = ctx.getBean("projectServiceImpl",ProjectService.class);
+        	Project p = new Project();
+        	p.setId(5);
+        	p.setCode("tt-20170809-CN-BJ-001");
+        	p.setBeginDate(new Date(System.currentTimeMillis()));
+        	p.setCreatedTime(new Date(System.currentTimeMillis()));
+        	p.setCreatedUser("user");
+        	p.setEndDate(new Date(System.currentTimeMillis()));
+        	p.setModifiedTime(new Date(System.currentTimeMillis()));
+        	p.setName("火星游");
+        	p.setNote("火星游。。。");
+        	p.setValid(1);
+        	p.setModifiedUser("you");
+        	ps.updateById(p);
+        	
+        }
+        
         
         @After
         public void destroy(){

@@ -73,5 +73,30 @@ public class ProjectServiceImpl implements ProjectService{
 			throw new ServiceException("保存失败!");
 		}
 	}
+	
+	@Override
+	public  Project findObjectById(Integer id) {
+		if(id==null) {
+			throw new ServiceException("id不能为空!");
+		}
+		Project p = projectDao.findObjectById(id);
+
+		if(p==null) {
+			throw new ServiceException("对象不存在!");
+		}
+		return p;
+	}
+	
+	@Override
+	public void updateById(Project project) {
+		
+		Project p = findObjectById(project.getId());
+		int row = projectDao.updateObject(project);
+	
+		if(row<=0) {
+			throw new ServiceException("保存失败!");
+		}
+		
+	}
 
 }

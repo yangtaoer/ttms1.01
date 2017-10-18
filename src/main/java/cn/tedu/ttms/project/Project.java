@@ -3,6 +3,8 @@ package cn.tedu.ttms.project;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import cn.tedu.ttms.common.web.JsonDateTypeConvert;
@@ -36,7 +38,10 @@ public class Project implements Serializable {
 	/**
 	 * 使用JsonSerialize注解的目的是当将此值填充到json串时先按照指定格式进行转换
 	 */
-	
+	/**
+	 * @DateTimeFormat 是让页面传输过来的日期格式统一,否则可能出现400
+	 */
+	@DateTimeFormat(pattern="yyyy/mm/dd")
 	private Date beginDate;
 	/*项目结束时间*/
 	private Date endDate;

@@ -7,11 +7,9 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.tedu.ttms.common.exception.ServiceException;
 import cn.tedu.ttms.common.web.JsonResult;
 import cn.tedu.ttms.product.service.ProjectService;
 import cn.tedu.ttms.project.Project;
@@ -85,6 +83,32 @@ public class ProjectController {
    @ResponseBody
    public JsonResult doSaveObject(Project entity) {
 	   projectService.saveObject(entity);
+	   return new JsonResult("添加成功!");
+   }
+   
+   /**
+    * 
+    * @param id  根据id先查找对象
+    * @return
+    */
+   @RequestMapping("doFindObjectById")
+   @ResponseBody
+   public JsonResult doFindObjectById(Integer id) {
+	   Project p = projectService.findObjectById(id);
+	   if(p==null){
+		   return new JsonResult("对象不存在!");
+	   }
+	   return new JsonResult(p);
+   }
+   /**
+    * 
+    * @param entity 然后更新对象
+    * @return
+    */
+   @RequestMapping("doUpdateObject")
+   @ResponseBody
+   public JsonResult doUpdateObject(Project entity) {
+	   projectService.updateById(entity);
 	   return new JsonResult("添加成功!");
    }
      
