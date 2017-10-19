@@ -25,4 +25,15 @@ public class ProductController {
 		return new JsonResult(productTypeService.findObjects());
 	}
 	
+	@RequestMapping("doDeleteObject")
+	@ResponseBody
+	public JsonResult deleteObject(Integer id){
+		productTypeService.deleteObject(id);
+		return new JsonResult("删除成功!");
+				
+	}
+	@RequestMapping("editUI")
+	public String editUI(){
+		return "product/type_edit";
+	}
 }

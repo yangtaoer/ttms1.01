@@ -5,4 +5,5 @@ import java.util.Map;
 
 public interface ProductTypeService {
 	List<Map<String,Object>> findObjects();
+	void deleteObject(Integer id);
 }

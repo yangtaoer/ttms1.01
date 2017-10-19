@@ -7,7 +7,7 @@
 	 <div class="page-header">
 		<div class="page-title" style="padding-bottom: 5px">
 			<ol class="breadcrumb">
-				<li class="active">分类编辑</li>
+				<li class="active" id="pageTitle">分类编辑</li>
 			</ol>
 		</div>
 		<div class="page-stats"></div>

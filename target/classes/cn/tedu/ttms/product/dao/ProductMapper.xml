@@ -6,5 +6,11 @@
    		SELECT c.*,t.name parentName FROM tms_classes c left join tms_classes  t on t.id=c.parentId
    		<!-- SELECT C.* ,(SELECT name  from tms_classes t where c.parentId=t.id)parentName from tms_classes c -->
    </select>
-            
+   <!-- 统计子元素个数,当个数大于0,则不能删除父元素 -->
+   <select id="hasChilds" parameterType="integer" resultType="int">
+   		select count(*) from tms_classes where parentId=#{id}
+   </select>
+   <delete id="deleteObject" parameterType="integer">
+   		delete from tms_classes where id=#{id}
+   </delete>
 </mapper>
