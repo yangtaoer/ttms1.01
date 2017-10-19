@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.tedu.ttms.common.exception.ServiceException;
+import cn.tedu.ttms.common.vo.Node;
 import cn.tedu.ttms.product.dao.ProductDao;
+import cn.tedu.ttms.project.ProductType;
 
 @Service
 public class ProductTypeServiceImpl implements ProductTypeService{
@@ -36,6 +38,21 @@ public class ProductTypeServiceImpl implements ProductTypeService{
 			throw new ServiceException("含有下级元素不能删除!");
 		}
 		
+	}
+
+	@Override
+	public List<Node> findZtreeNodes() {
+		return productDao.findZtreeNodes();
+	}
+
+	@Override
+	public void saveObject(ProductType entity) {
+		if(entity==null) {
+			throw new ServiceException("保存对象不能为空");
+		}
+		int row = productDao.insertObject(entity);
+		if(row<1)
+			throw new ServiceException("数据保存失败");
 	}
 
 }

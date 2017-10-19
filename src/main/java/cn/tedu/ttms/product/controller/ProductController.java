@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.tedu.ttms.common.web.JsonResult;
 import cn.tedu.ttms.product.service.ProductTypeService;
+import cn.tedu.ttms.project.ProductType;
 
 @Controller
 @RequestMapping("/type/")
@@ -35,5 +36,18 @@ public class ProductController {
 	@RequestMapping("editUI")
 	public String editUI(){
 		return "product/type_edit";
+	}
+	
+	@RequestMapping("doFindZtreeNodes")
+	@ResponseBody
+	public JsonResult doFindZtreeNodes(){		
+		return new JsonResult(productTypeService.findZtreeNodes());
+	}
+	
+	@RequestMapping("doSaveObject")
+	@ResponseBody
+	public JsonResult doSaveObject(ProductType entity){	
+		productTypeService.saveObject(entity);
+		return new JsonResult("保存成功!");
 	}
 }
